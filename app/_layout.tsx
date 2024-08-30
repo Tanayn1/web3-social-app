@@ -1,37 +1,41 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import 'react-native-get-random-values'
+import { View, Text } from 'react-native'
+import React, { useEffect } from 'react'
+import { router, Stack } from 'expo-router'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import * as SecureStore from "expo-secure-store"
+const client = new ApolloClient({
+  uri: process.env.EXPO_PUBLIC_BACKEND_URL,
+  cache: new InMemoryCache()
+});
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
+export default function App() {
+  const checkAuthenticated = async () => {
+    const accessToken = await SecureStore.getItemAsync('access_token');
+    const refreshToken = await SecureStore.getItemAsync('refresh_token');
+    if (accessToken || refreshToken) {
+      router.push('/home')
     }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
   }
 
+  useEffect(()=>{
+    checkAuthenticated();
+  },[])
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
-  );
+    <ApolloProvider client={client}>
+      <RootLayout/>
+    </ApolloProvider>
+  )
+}
+
+export const RootLayout = () => {
+  return (
+    <Stack>
+      <Stack.Screen name='index' options={{headerShown: false}}/>
+      {/* <Stack.Screen name='(tabs)' options={{headerShown: false}}/> */}
+      <Stack.Screen name='(protected)' options={{headerShown: false}}/>
+      <Stack.Screen name='(onboarding)' options={{headerShown: false}}/>
+      <Stack.Screen name='(auth)' options={{headerShown: false}}/>
+    </Stack>
+  )
 }

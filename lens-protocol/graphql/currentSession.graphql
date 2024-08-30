@@ -1,0 +1,12 @@
+query CurrentSession {
+  currentSession {
+    authorizationId
+    browser
+    device
+    os
+    origin
+    expiresAt
+    createdAt
+    updatedAt
+  }
+}

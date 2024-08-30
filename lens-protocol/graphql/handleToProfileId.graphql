@@ -1,0 +1,5 @@
+query HandleToProfileId($request: ProfileRequest!) {
+  profile(request: $request) {
+    id
+  }
+}
