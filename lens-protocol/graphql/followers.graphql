@@ -1,0 +1,39 @@
+query Followers($request: FollowersRequest!) {
+  followers(request: $request) {
+    items {
+      id
+      metadata {
+        picture {
+          ... on ImageSet {
+            optimized {
+              width
+              height
+              uri
+              mimeType
+            }
+          }
+        }
+        coverPicture {
+          optimized {
+            width
+            height
+            uri
+            mimeType
+          }
+        }
+        bio
+        rawURI
+        appId
+        attributes {
+          key
+          value
+        }
+        displayName
+      }
+      handle {
+        fullHandle
+        id
+      }
+    }
+  }
+}

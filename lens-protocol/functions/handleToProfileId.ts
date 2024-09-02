@@ -1,5 +1,5 @@
 import { client } from "../../utils/apolloClient";
-import { HandleToProfileIdDocument, useHandleToProfileIdQuery } from "../graphql/generated";
+import { HandleToProfileIdDocument, MetadataDocument, useHandleToProfileIdQuery } from "../graphql/generated";
 
 export async function handleToProfileId(forHandle: string) {
    try {

@@ -1,0 +1,46 @@
+query Metadata($request: ProfileRequest!) {
+  profile(request: $request) {
+    metadata {
+      displayName
+      bio
+      rawURI
+      appId
+      attributes {
+        type
+        key
+        value
+      }
+      picture {
+        ... on ImageSet {
+          optimized {
+            uri
+            height
+            width
+            mimeType
+          }
+        }
+      }
+      coverPicture {
+        optimized {
+          mimeType
+          width
+          height
+          uri
+        }
+      }
+    }
+    createdAt
+    ownedBy {
+      address
+      chainId
+    }
+    handle {
+      namespace
+      fullHandle
+      localName
+      id
+    }
+    id
+    txHash
+  }
+}

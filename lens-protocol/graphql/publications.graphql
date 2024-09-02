@@ -1,0 +1,31 @@
+query Publications($request: PublicationsRequest!) {
+  publications(request: $request) {
+    items {
+      ... on Post {
+        id
+        metadata {
+          ... on VideoMetadataV3 {
+            id
+            rawURI
+            title
+            content
+            appId
+            isShortVideo
+            hideFromFeed
+            attributes {
+              type
+              key
+              value
+            }
+          }
+        }
+        stats {
+          comments
+          mirrors
+          quotes
+          reactions
+        }
+      }
+    }
+  }
+}

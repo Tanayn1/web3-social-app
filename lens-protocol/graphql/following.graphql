@@ -1,0 +1,40 @@
+query Following($request: FollowingRequest!) {
+  following(request: $request) {
+    items {
+      id
+      metadata {
+        displayName
+        bio
+        rawURI
+        appId
+        attributes {
+          type
+          key
+          value
+        }
+        picture {
+          ... on ImageSet {
+            optimized {
+              mimeType
+              width
+              height
+              uri
+            }
+          }
+        }
+        coverPicture {
+          optimized {
+            width
+            height
+            uri
+            mimeType
+          }
+        }
+      }
+      handle {
+        id
+        fullHandle
+      }
+    }
+  }
+}

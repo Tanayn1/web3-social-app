@@ -1,4 +1,6 @@
 import 'react-native-get-random-values'
+import 'react-native-reanimated'
+import 'react-native-gesture-handler'
 import { View, Text } from 'react-native'
 import React, { useEffect } from 'react'
 import { router, Stack } from 'expo-router'

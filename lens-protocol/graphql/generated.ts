@@ -6076,6 +6076,20 @@ export type CurrentSessionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CurrentSessionQuery = { __typename?: 'Query', currentSession: { __typename?: 'ApprovedAuthentication', authorizationId: any, browser?: string | null, device?: string | null, os?: string | null, origin?: any | null, expiresAt: any, createdAt: any, updatedAt: any } };
 
+export type FollowersQueryVariables = Exact<{
+  request: FollowersRequest;
+}>;
+
+
+export type FollowersQuery = { __typename?: 'Query', followers: { __typename?: 'PaginatedProfileResult', items: Array<{ __typename?: 'Profile', id: any, metadata?: { __typename?: 'ProfileMetadata', bio?: any | null, rawURI: any, appId?: any | null, displayName?: string | null, picture?: { __typename?: 'ImageSet', optimized?: { __typename?: 'Image', width?: number | null, height?: number | null, uri: any, mimeType?: any | null } | null } | { __typename?: 'NftImage' } | null, coverPicture?: { __typename?: 'ImageSet', optimized?: { __typename?: 'Image', width?: number | null, height?: number | null, uri: any, mimeType?: any | null } | null } | null, attributes?: Array<{ __typename?: 'MetadataAttribute', key: string, value: string }> | null } | null, handle?: { __typename?: 'HandleInfo', fullHandle: any, id: any } | null }> } };
+
+export type FollowingQueryVariables = Exact<{
+  request: FollowingRequest;
+}>;
+
+
+export type FollowingQuery = { __typename?: 'Query', following: { __typename?: 'PaginatedProfileResult', items: Array<{ __typename?: 'Profile', id: any, metadata?: { __typename?: 'ProfileMetadata', displayName?: string | null, bio?: any | null, rawURI: any, appId?: any | null, attributes?: Array<{ __typename?: 'MetadataAttribute', type: MetadataAttributeType, key: string, value: string }> | null, picture?: { __typename?: 'ImageSet', optimized?: { __typename?: 'Image', mimeType?: any | null, width?: number | null, height?: number | null, uri: any } | null } | { __typename?: 'NftImage' } | null, coverPicture?: { __typename?: 'ImageSet', optimized?: { __typename?: 'Image', width?: number | null, height?: number | null, uri: any, mimeType?: any | null } | null } | null } | null, handle?: { __typename?: 'HandleInfo', id: any, fullHandle: any } | null }> } };
+
 export type GenerateLensApiRelayAddressQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -6087,6 +6101,13 @@ export type HandleToAddressQueryVariables = Exact<{
 
 
 export type HandleToAddressQuery = { __typename?: 'Query', handleToAddress?: any | null };
+
+export type MetadataQueryVariables = Exact<{
+  request: ProfileRequest;
+}>;
+
+
+export type MetadataQuery = { __typename?: 'Query', profile?: { __typename?: 'Profile', createdAt: any, id: any, txHash: any, metadata?: { __typename?: 'ProfileMetadata', displayName?: string | null, bio?: any | null, rawURI: any, appId?: any | null, attributes?: Array<{ __typename?: 'MetadataAttribute', type: MetadataAttributeType, key: string, value: string }> | null, picture?: { __typename?: 'ImageSet', optimized?: { __typename?: 'Image', uri: any, height?: number | null, width?: number | null, mimeType?: any | null } | null } | { __typename?: 'NftImage' } | null, coverPicture?: { __typename?: 'ImageSet', optimized?: { __typename?: 'Image', mimeType?: any | null, width?: number | null, height?: number | null, uri: any } | null } | null } | null, ownedBy: { __typename?: 'NetworkAddress', address: any, chainId: any }, handle?: { __typename?: 'HandleInfo', namespace: string, fullHandle: any, localName: string, id: any } | null } | null };
 
 export type HandleToProfileIdQueryVariables = Exact<{
   request: ProfileRequest;
@@ -6102,6 +6123,13 @@ export type OwnedHandlesQueryVariables = Exact<{
 
 export type OwnedHandlesQuery = { __typename?: 'Query', ownedHandles: { __typename?: 'PaginatedHandlesResult', items: Array<{ __typename?: 'HandleInfo', id: any, fullHandle: any, ownedBy: any }> } };
 
+export type PublicationsQueryVariables = Exact<{
+  request: PublicationsRequest;
+}>;
+
+
+export type PublicationsQuery = { __typename?: 'Query', publications: { __typename?: 'PaginatedPublicationsResult', items: Array<{ __typename?: 'Comment' } | { __typename?: 'Mirror' } | { __typename?: 'Post', id: any, metadata: { __typename?: 'ArticleMetadataV3' } | { __typename?: 'AudioMetadataV3' } | { __typename?: 'CheckingInMetadataV3' } | { __typename?: 'EmbedMetadataV3' } | { __typename?: 'EventMetadataV3' } | { __typename?: 'ImageMetadataV3' } | { __typename?: 'LinkMetadataV3' } | { __typename?: 'LiveStreamMetadataV3' } | { __typename?: 'MintMetadataV3' } | { __typename?: 'SpaceMetadataV3' } | { __typename?: 'StoryMetadataV3' } | { __typename?: 'TextOnlyMetadataV3' } | { __typename?: 'ThreeDMetadataV3' } | { __typename?: 'TransactionMetadataV3' } | { __typename?: 'VideoMetadataV3', id: string, rawURI: any, title: string, content: any, appId?: any | null, isShortVideo: boolean, hideFromFeed: boolean, attributes?: Array<{ __typename?: 'MetadataAttribute', type: MetadataAttributeType, key: string, value: string }> | null }, stats: { __typename?: 'PublicationStats', comments: number, mirrors: number, quotes: number, reactions: number } } | { __typename?: 'Quote' }> } };
+
 export type RefreshMutationVariables = Exact<{
   request: RefreshRequest;
 }>;
@@ -6115,6 +6143,13 @@ export type RevokeAuthenticationMutationVariables = Exact<{
 
 
 export type RevokeAuthenticationMutation = { __typename?: 'Mutation', revokeAuthentication?: any | null };
+
+export type SetProfileMetadataMutationVariables = Exact<{
+  request: OnchainSetProfileMetadataRequest;
+}>;
+
+
+export type SetProfileMetadataMutation = { __typename?: 'Mutation', setProfileMetadata: { __typename?: 'LensProfileManagerRelayError', reason: LensProfileManagerRelayErrorReasonType } | { __typename?: 'RelaySuccess', txHash?: any | null, txId: any } };
 
 
 export const AuthenticateDocument = gql`
@@ -6239,6 +6274,155 @@ export type CurrentSessionQueryHookResult = ReturnType<typeof useCurrentSessionQ
 export type CurrentSessionLazyQueryHookResult = ReturnType<typeof useCurrentSessionLazyQuery>;
 export type CurrentSessionSuspenseQueryHookResult = ReturnType<typeof useCurrentSessionSuspenseQuery>;
 export type CurrentSessionQueryResult = Apollo.QueryResult<CurrentSessionQuery, CurrentSessionQueryVariables>;
+export const FollowersDocument = gql`
+    query Followers($request: FollowersRequest!) {
+  followers(request: $request) {
+    items {
+      id
+      metadata {
+        picture {
+          ... on ImageSet {
+            optimized {
+              width
+              height
+              uri
+              mimeType
+            }
+          }
+        }
+        coverPicture {
+          optimized {
+            width
+            height
+            uri
+            mimeType
+          }
+        }
+        bio
+        rawURI
+        appId
+        attributes {
+          key
+          value
+        }
+        displayName
+      }
+      handle {
+        fullHandle
+        id
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useFollowersQuery__
+ *
+ * To run a query within a React component, call `useFollowersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFollowersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFollowersQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useFollowersQuery(baseOptions: Apollo.QueryHookOptions<FollowersQuery, FollowersQueryVariables> & ({ variables: FollowersQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FollowersQuery, FollowersQueryVariables>(FollowersDocument, options);
+      }
+export function useFollowersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FollowersQuery, FollowersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FollowersQuery, FollowersQueryVariables>(FollowersDocument, options);
+        }
+export function useFollowersSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FollowersQuery, FollowersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FollowersQuery, FollowersQueryVariables>(FollowersDocument, options);
+        }
+export type FollowersQueryHookResult = ReturnType<typeof useFollowersQuery>;
+export type FollowersLazyQueryHookResult = ReturnType<typeof useFollowersLazyQuery>;
+export type FollowersSuspenseQueryHookResult = ReturnType<typeof useFollowersSuspenseQuery>;
+export type FollowersQueryResult = Apollo.QueryResult<FollowersQuery, FollowersQueryVariables>;
+export const FollowingDocument = gql`
+    query Following($request: FollowingRequest!) {
+  following(request: $request) {
+    items {
+      id
+      metadata {
+        displayName
+        bio
+        rawURI
+        appId
+        attributes {
+          type
+          key
+          value
+        }
+        picture {
+          ... on ImageSet {
+            optimized {
+              mimeType
+              width
+              height
+              uri
+            }
+          }
+        }
+        coverPicture {
+          optimized {
+            width
+            height
+            uri
+            mimeType
+          }
+        }
+      }
+      handle {
+        id
+        fullHandle
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useFollowingQuery__
+ *
+ * To run a query within a React component, call `useFollowingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useFollowingQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useFollowingQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useFollowingQuery(baseOptions: Apollo.QueryHookOptions<FollowingQuery, FollowingQueryVariables> & ({ variables: FollowingQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<FollowingQuery, FollowingQueryVariables>(FollowingDocument, options);
+      }
+export function useFollowingLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FollowingQuery, FollowingQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<FollowingQuery, FollowingQueryVariables>(FollowingDocument, options);
+        }
+export function useFollowingSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<FollowingQuery, FollowingQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<FollowingQuery, FollowingQueryVariables>(FollowingDocument, options);
+        }
+export type FollowingQueryHookResult = ReturnType<typeof useFollowingQuery>;
+export type FollowingLazyQueryHookResult = ReturnType<typeof useFollowingLazyQuery>;
+export type FollowingSuspenseQueryHookResult = ReturnType<typeof useFollowingSuspenseQuery>;
+export type FollowingQueryResult = Apollo.QueryResult<FollowingQuery, FollowingQueryVariables>;
 export const GenerateLensApiRelayAddressDocument = gql`
     query GenerateLensAPIRelayAddress {
   generateLensAPIRelayAddress
@@ -6314,6 +6498,87 @@ export type HandleToAddressQueryHookResult = ReturnType<typeof useHandleToAddres
 export type HandleToAddressLazyQueryHookResult = ReturnType<typeof useHandleToAddressLazyQuery>;
 export type HandleToAddressSuspenseQueryHookResult = ReturnType<typeof useHandleToAddressSuspenseQuery>;
 export type HandleToAddressQueryResult = Apollo.QueryResult<HandleToAddressQuery, HandleToAddressQueryVariables>;
+export const MetadataDocument = gql`
+    query Metadata($request: ProfileRequest!) {
+  profile(request: $request) {
+    metadata {
+      displayName
+      bio
+      rawURI
+      appId
+      attributes {
+        type
+        key
+        value
+      }
+      picture {
+        ... on ImageSet {
+          optimized {
+            uri
+            height
+            width
+            mimeType
+          }
+        }
+      }
+      coverPicture {
+        optimized {
+          mimeType
+          width
+          height
+          uri
+        }
+      }
+    }
+    createdAt
+    ownedBy {
+      address
+      chainId
+    }
+    handle {
+      namespace
+      fullHandle
+      localName
+      id
+    }
+    id
+    txHash
+  }
+}
+    `;
+
+/**
+ * __useMetadataQuery__
+ *
+ * To run a query within a React component, call `useMetadataQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMetadataQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMetadataQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useMetadataQuery(baseOptions: Apollo.QueryHookOptions<MetadataQuery, MetadataQueryVariables> & ({ variables: MetadataQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MetadataQuery, MetadataQueryVariables>(MetadataDocument, options);
+      }
+export function useMetadataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MetadataQuery, MetadataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MetadataQuery, MetadataQueryVariables>(MetadataDocument, options);
+        }
+export function useMetadataSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<MetadataQuery, MetadataQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<MetadataQuery, MetadataQueryVariables>(MetadataDocument, options);
+        }
+export type MetadataQueryHookResult = ReturnType<typeof useMetadataQuery>;
+export type MetadataLazyQueryHookResult = ReturnType<typeof useMetadataLazyQuery>;
+export type MetadataSuspenseQueryHookResult = ReturnType<typeof useMetadataSuspenseQuery>;
+export type MetadataQueryResult = Apollo.QueryResult<MetadataQuery, MetadataQueryVariables>;
 export const HandleToProfileIdDocument = gql`
     query HandleToProfileId($request: ProfileRequest!) {
   profile(request: $request) {
@@ -6398,6 +6663,72 @@ export type OwnedHandlesQueryHookResult = ReturnType<typeof useOwnedHandlesQuery
 export type OwnedHandlesLazyQueryHookResult = ReturnType<typeof useOwnedHandlesLazyQuery>;
 export type OwnedHandlesSuspenseQueryHookResult = ReturnType<typeof useOwnedHandlesSuspenseQuery>;
 export type OwnedHandlesQueryResult = Apollo.QueryResult<OwnedHandlesQuery, OwnedHandlesQueryVariables>;
+export const PublicationsDocument = gql`
+    query Publications($request: PublicationsRequest!) {
+  publications(request: $request) {
+    items {
+      ... on Post {
+        id
+        metadata {
+          ... on VideoMetadataV3 {
+            id
+            rawURI
+            title
+            content
+            appId
+            isShortVideo
+            hideFromFeed
+            attributes {
+              type
+              key
+              value
+            }
+          }
+        }
+        stats {
+          comments
+          mirrors
+          quotes
+          reactions
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __usePublicationsQuery__
+ *
+ * To run a query within a React component, call `usePublicationsQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePublicationsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePublicationsQuery({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function usePublicationsQuery(baseOptions: Apollo.QueryHookOptions<PublicationsQuery, PublicationsQueryVariables> & ({ variables: PublicationsQueryVariables; skip?: boolean; } | { skip: boolean; }) ) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PublicationsQuery, PublicationsQueryVariables>(PublicationsDocument, options);
+      }
+export function usePublicationsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PublicationsQuery, PublicationsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PublicationsQuery, PublicationsQueryVariables>(PublicationsDocument, options);
+        }
+export function usePublicationsSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<PublicationsQuery, PublicationsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<PublicationsQuery, PublicationsQueryVariables>(PublicationsDocument, options);
+        }
+export type PublicationsQueryHookResult = ReturnType<typeof usePublicationsQuery>;
+export type PublicationsLazyQueryHookResult = ReturnType<typeof usePublicationsLazyQuery>;
+export type PublicationsSuspenseQueryHookResult = ReturnType<typeof usePublicationsSuspenseQuery>;
+export type PublicationsQueryResult = Apollo.QueryResult<PublicationsQuery, PublicationsQueryVariables>;
 export const RefreshDocument = gql`
     mutation Refresh($request: RefreshRequest!) {
   refresh(request: $request) {
@@ -6464,3 +6795,42 @@ export function useRevokeAuthenticationMutation(baseOptions?: Apollo.MutationHoo
 export type RevokeAuthenticationMutationHookResult = ReturnType<typeof useRevokeAuthenticationMutation>;
 export type RevokeAuthenticationMutationResult = Apollo.MutationResult<RevokeAuthenticationMutation>;
 export type RevokeAuthenticationMutationOptions = Apollo.BaseMutationOptions<RevokeAuthenticationMutation, RevokeAuthenticationMutationVariables>;
+export const SetProfileMetadataDocument = gql`
+    mutation SetProfileMetadata($request: OnchainSetProfileMetadataRequest!) {
+  setProfileMetadata(request: $request) {
+    ... on RelaySuccess {
+      txHash
+      txId
+    }
+    ... on LensProfileManagerRelayError {
+      reason
+    }
+  }
+}
+    `;
+export type SetProfileMetadataMutationFn = Apollo.MutationFunction<SetProfileMetadataMutation, SetProfileMetadataMutationVariables>;
+
+/**
+ * __useSetProfileMetadataMutation__
+ *
+ * To run a mutation, you first call `useSetProfileMetadataMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSetProfileMetadataMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [setProfileMetadataMutation, { data, loading, error }] = useSetProfileMetadataMutation({
+ *   variables: {
+ *      request: // value for 'request'
+ *   },
+ * });
+ */
+export function useSetProfileMetadataMutation(baseOptions?: Apollo.MutationHookOptions<SetProfileMetadataMutation, SetProfileMetadataMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SetProfileMetadataMutation, SetProfileMetadataMutationVariables>(SetProfileMetadataDocument, options);
+      }
+export type SetProfileMetadataMutationHookResult = ReturnType<typeof useSetProfileMetadataMutation>;
+export type SetProfileMetadataMutationResult = Apollo.MutationResult<SetProfileMetadataMutation>;
+export type SetProfileMetadataMutationOptions = Apollo.BaseMutationOptions<SetProfileMetadataMutation, SetProfileMetadataMutationVariables>;

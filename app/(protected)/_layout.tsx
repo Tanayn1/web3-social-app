@@ -15,7 +15,6 @@ export default function protected_layout() {
     const refreshTokens = async () => {
         const oldAccessToken = await SecureStore.getItemAsync('access_token');
         const oldRefreshToken = await SecureStore.getItemAsync('refresh_token');
-        console.log(oldRefreshToken)
         if (!oldAccessToken || !oldRefreshToken) {
             router.push('/');
             return
@@ -26,7 +25,7 @@ export default function protected_layout() {
         await SecureStore.setItemAsync('refresh_token', refreshToken);
         await SecureStore.setItemAsync('identity_token', identityToken);
 
-        console.log("Tokens Refreshed", accessToken, refreshToken, identityToken);
+        //console.log("Tokens Refreshed", accessToken, refreshToken, identityToken);
 
 
 
@@ -45,6 +44,9 @@ export default function protected_layout() {
   return (
     <Stack>
         <Stack.Screen name='(tabs)' options={{headerShown: false}}/>
+        <Stack.Screen name='selectProfileModal' options={{headerShown: false, presentation: 'modal'}}/>
+        <Stack.Screen name='editProfile' options={{headerShown: false, presentation: 'modal'}}/>
+
     </Stack>
   )
 }
