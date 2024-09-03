@@ -24,6 +24,8 @@ export default function EditProfileModal({ isOpen, setOpen, data, ...rest }: Edi
   const [displayName, setDispayName] = useState<null | string>();
   const [bio, setBio] = useState<null | string>();
 
+  const JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiI0Nzg0Mzk3MC1jY2Y3LTQ1ZjEtODAwMy0wMmExYzc5MGQ3MmYiLCJlbWFpbCI6InRhbmF5dG9uZGFyZUBob3RtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaW5fcG9saWN5Ijp7InJlZ2lvbnMiOlt7ImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxLCJpZCI6IkZSQTEifSx7ImRlc2lyZWRSZXBsaWNhdGlvbkNvdW50IjoxLCJpZCI6Ik5ZQzEifV0sInZlcnNpb24iOjF9LCJtZmFfZW5hYmxlZCI6ZmFsc2UsInN0YXR1cyI6IkFDVElWRSJ9LCJhdXRoZW50aWNhdGlvblR5cGUiOiJzY29wZWRLZXkiLCJzY29wZWRLZXlLZXkiOiI3ZDE2OTg0YzRhYzE5OTYzNmUwZSIsInNjb3BlZEtleVNlY3JldCI6ImQ1Y2IzYzE2ODY3YjE3ZTkxNTg4NDU0YWRkN2Q0MzdiNDRjZDAwMTY1MWNjN2QyZWQzNzcxM2Q3ZWE4MGVlZWQiLCJleHAiOjE3NTY3OTI3MjN9.SuhgKWLe02bqBTFGEd_iD7JM4g5XJfW47HyKxPAXe7g'
+
 
   const uploadImageFromGallery = async () => {
     try {

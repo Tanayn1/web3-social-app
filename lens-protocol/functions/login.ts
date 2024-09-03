@@ -20,3 +20,21 @@ export async function signIn(wallet: Wallet) {
 
 
 }
+
+
+export async function signInProfileId(wallet: Wallet, profileId: string) {
+    try {
+        console.log("Wallet Address", wallet.address)
+        const { id, text } = await challenge({signedBy: wallet.address, for: profileId});
+        console.log("challenge", id, text)
+        const signature = await wallet.signMessage(text);
+        console.log("Signature", signature, id)
+        const { accessToken, refreshToken, identityToken } = await authenticate({signature, id});
+        console.log(accessToken, refreshToken, identityToken);
+        await SecureStorage.setItemAsync('access_token', accessToken);
+        await SecureStorage.setItemAsync('refresh_token', refreshToken);
+        await SecureStorage.setItemAsync('identity_token', identityToken);
+    } catch (error) {
+        console.log(error);
+    }
+}

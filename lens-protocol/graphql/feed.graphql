@@ -1,0 +1,72 @@
+query Feed($request: FeedRequest!) {
+  feed(request: $request) {
+    items {
+      id
+      root {
+        ... on Post {
+          id
+          createdAt
+          by {
+            id
+            handle {
+              fullHandle
+            }
+          }
+          metadata {
+            ... on VideoMetadataV3 {
+              isShortVideo
+              title
+              tags
+              content
+              id
+              attachments {
+                ... on PublicationMetadataMediaVideo {
+                  video {
+                    optimized {
+                      mimeType
+                      uri
+                    }
+                  }
+                }
+              }
+            }
+            ... on ImageMetadataV3 {
+              title
+              tags
+              id
+              content
+              attachments {
+                ... on PublicationMetadataMediaVideo {
+                  video {
+                    optimized {
+                      uri
+                      mimeType
+                    }
+                  }
+                  cover {
+                    optimized {
+                      uri
+                      mimeType
+                      height
+                      width
+                    }
+                  }
+                }
+                ... on PublicationMetadataMediaImage {
+                  image {
+                    optimized {
+                      width
+                      uri
+                      mimeType
+                      height
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

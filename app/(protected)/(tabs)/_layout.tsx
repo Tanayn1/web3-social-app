@@ -4,9 +4,9 @@ import * as SecureStore from "expo-secure-store"
 
 export default function TabLayout() {
   const check = async () => {
-    const handle = await SecureStore.getItemAsync('selectedHandle');
+    const handle = await SecureStore.getItemAsync('selected_handle');
     if (!handle) {
-      router.push('/selectProfileModal')
+      router.push('/')
     }
   }
   useEffect(()=>{

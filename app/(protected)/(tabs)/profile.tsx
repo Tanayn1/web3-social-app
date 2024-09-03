@@ -15,12 +15,14 @@ import Entypo from '@expo/vector-icons/Entypo';
 export default function Profile() {
     const [profileMetadata, setProfileMetada] = useState<null | MetadataQuery>();
     const [editProfileModal, setEditProfileModal] = useState<boolean>(false);
-    
+
     const handleLogout = async () => {
         await SecureStore.deleteItemAsync('access_token');
         await SecureStore.deleteItemAsync('refresh_token');
         await SecureStore.deleteItemAsync('identity_token');
-        await SecureStore.deleteItemAsync('selectedHandle');
+        await SecureStore.deleteItemAsync('selected_handle');
+        await SecureStore.deleteItemAsync('profile_id');
+
         router.push('/');
     };
 
